@@ -1,0 +1,4 @@
+lib/*
+*.csv
+*.drawio
+*.html
