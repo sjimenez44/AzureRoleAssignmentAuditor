@@ -238,25 +238,37 @@ if __name__ == "__main__":
 
     print("Saving subscriptions...")
     df_subscription, subscriptions = AzureDataProcessor.process_subscription(management_client)
-    df_subscription.to_csv("subscriptions.csv", index=False)
+    df_subscription.to_csv("data/subscriptions.csv", index=False)
     print("Saving resources...")
     df_resources = AzureDataProcessor.process_resources(subscriptions, management_client)
-    df_resources.to_csv("resources.csv", index=False)
+    df_resources.to_csv("data/resources.csv", index=False)
     print("Saving role assignments...")
     df_role_assignments = AzureDataProcessor.process_role_assignments(subscriptions, management_client)
-    df_role_assignments.to_csv("role_assignments.csv", index=False)
+    df_role_assignments.to_csv("data/role_assignments.csv", index=False)
     print("Saving role definitions...")
     df_role_definitions = AzureDataProcessor.process_role_definitions(subscriptions, management_client)
-    df_role_definitions.to_csv("role_definitions.csv", index=False)
+    df_role_definitions.to_csv("data/role_definitions.csv", index=False)
     print("Saving service principals...")
     df_service_principals, app_ids = AzureDataProcessor.process_service_principals(graph_client)
-    df_service_principals.to_csv("service_principals_roles.csv", index=False)
+    df_service_principals.to_csv("data/service_principals_roles.csv", index=False)
     print("Saving application role assignments...")
     df_app_role_assignments = AzureDataProcessor.process_app_role_assignments(graph_client, app_ids)
-    df_app_role_assignments.to_csv("app_role_assignments.csv", index=False)
+    df_app_role_assignments.to_csv("data/app_role_assignments.csv", index=False)
     print("Saving users...")
     df_users = AzureDataProcessor.process_users(graph_client)
-    df_users.to_csv("users.csv", index=False)
+    df_users.to_csv("data/users.csv", index=False)
     print("Saving groups...")
     df_groups = AzureDataProcessor.process_groups(graph_client)
-    df_groups.to_csv("groups.csv", index=False)
+    df_groups.to_csv("data/groups.csv", index=False)
+    print("Saving node types...")
+    df_types = pd.DataFrame([
+        {"Type": "User",             "Color": "cyan"},
+        {"Type": "Group",            "Color": "blue"},
+        {"Type": "ServicePrincipal", "Color": "gray"},
+        {"Type": "Application",      "Color": "red"},
+        {"Type": "ManagementGroup",  "Color": "brown"},
+        {"Type": "Subscription",     "Color": "purple"},
+        {"Type": "ResourceGroup",    "Color": "yellow"},
+        {"Type": "Resource",         "Color": "orange"},
+    ])
+    df_types.to_csv("data/nodes_types.csv", index=False)
