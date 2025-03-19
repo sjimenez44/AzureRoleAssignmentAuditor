@@ -1,6 +1,8 @@
 # Azure Role Assignments Auditor
 ## Overview
 
+![WebApp](./src/capture.png)
+
 This project provides a containerized web application using Pyvis, NetworkX, and FastAPI to audit application role assignments and RBAC role assignments in Azure. The application visualizes role assignments in an interactive network graph, helping security teams analyze access control structures.
 
 ### Features
@@ -52,6 +54,19 @@ python data.py
 uvicorn app:app --reload
 ```
 4. Access the web UI at: http://localhost:8000
+
+### Node types
+
+| Node Name        | Color  |
+|------------------|--------|
+| Group            | blue   |
+| User             | cyan   |
+| Application      | red    |
+| ServicePrincipal | gray   |
+| ManagementGroup  | brown  |
+| Subscription     | purple |
+| ResourceGroup    | yellow |
+| Resource         | orange |
 
 ## Roadmap 
 - Dockerfile
