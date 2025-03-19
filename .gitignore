@@ -1,4 +1,4 @@
-lib/*
 *.csv
 *.drawio
 *.html
+__pycache__/*
